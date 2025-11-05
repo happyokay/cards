@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>博客侧向策略卡组</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: #f2f2f2;
+    transition: background 0.3s;
+  }
+  #card {
+    background: white;
+    padding: 60px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    max-width: 540px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.8;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.4s ease, transform 0.35s ease;
+  }
+  #card.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+  button {
+    margin-top: 60px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #555;
+  }
+  #podcast-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s;
+  }
+  #podcast-link:hover {
+    color: #222;
+  }
+</style>
+</head>
+<body>
+<a id="podcast-link" href="https://www.kele.me/" target="_blank">可乐周报</a>
+<div id="card"></div>
+<button onclick="nextCard()">下一张</button>
+
+<script>
+const cards = [
+"把主题说得更简单。",
+"用一个真实的故事开始。",
+"写给你现在最想说话的那个人。",
+"把文章拆成三句话：开头、关键点、结束。",
+"写一句你自己都不确定对不对的话。",
+"把情绪写出来，哪怕不优雅。",
+"写你不想承认但真实存在的那个想法。",
+"把“解释”换成“展示”。",
+"写给五年前的你。",
+"写完一段，就问：我真的在说我想说的吗？",
+"去掉一半的句子。",
+"删掉最聪明的那句话。",
+"用问题结尾，而不是答案。",
+"放弃“说服”，改为“分享”。",
+"写你今天注意到的一件小事。",
+"想象这篇文章只有 100 字的空间。",
+"把复杂的比喻换成日常物件。",
+"把“应该”替换成“我其实是因为…”。",
+"不要写结论，只写过程。",
+"写一段完全不考虑读者的内容。",
+"调整语气：更口语。",
+"让文章里有一点不好看的自己。",
+"使用一句有节奏感的句子作为骨干。",
+"给主题换一个角度，比如从“害怕”切到“渴望”。",
+"想象你在和朋友聊天，直接说。",
+"写一个你原本以为不值得写的细节。",
+"把观点缩到更小、更具体。",
+"假设你写得已经很好了，再写。",
+"停止搜索资料，直接写你现在知道的。",
+"让一段话只表达一个意思。",
+"删掉“废话式开头”，直接进入主题。",
+"加入一句你很喜欢但不知道为什么喜欢的话。",
+"用一个意外的例子支持你的观点。",
+"把文章当成礼物，而不是作品。",
+"向读者提出一个真正的问题。",
+"写你自己现在正在挣扎的东西。",
+"把文章写得更慢。",
+"把文章写得更急。",
+"不要写标题，写完再回头取。",
+"停下来，去喝水，然后回来写下一句最直白的话。"
+];
+
+function nextCard() {
+  const index = Math.floor(Math.random() * cards.length);
+  const cardElement = document.getElementById("card");
+  cardElement.classList.remove("show");
+  setTimeout(() => {
+    cardElement.textContent = cards[index];
+    cardElement.classList.add("show");
+  }, 150);
+}
+
+nextCard();
+</script>
+</body>
+</html>
