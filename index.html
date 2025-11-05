@@ -51,7 +51,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 14px;
+    font-size: 18px;
     text-decoration: none;
     color: #555;
     transition: color 0.3s;
@@ -107,20 +107,88 @@ const cards = [
 "把文章写得更慢。",
 "把文章写得更急。",
 "不要写标题，写完再回头取。",
-"停下来，去喝水，然后回来写下一句最直白的话。"
+"停下来，去喝水，然后回来写下一句最直白的话。",
+"描述你正在看的东西。",
+"写你最近改变想法的一件事。",
+"把一篇长文拆成三篇短文。",
+"尝试把内容都写成短句。",
+"写一个你以为所有人都知道，但其实不知道的事实。",
+"把抽象概念换成具体场景。",
+"从反面解释你的观点。",
+"假设读者已经完全懂你，再写。",
+"假设读者完全不懂你，再写。",
+"写给未来的你。",
+"删掉一句你写得最顺的句子。",
+"解释你为什么要写这篇。",
+"描述一次失败。",
+"描述一次小小的成功。",
+"把一个观点换成一个动作。",
+"写你现在犹豫的地方。",
+"把文字写得更轻。",
+"把文字写得更重。",
+"写你想对世界说但从未说过的话。",
+"模仿一个你喜欢的作者写。",
+"模仿一个你不喜欢的作者写。",
+"写一句让你自己停下来思考的话。",
+"换一个地方继续写。",
+"关掉音乐写。",
+"打开音乐写。",
+"像在发信息一样写。",
+"像在做演讲一样写。",
+"写你今天观察到的一个人。",
+"写你今天想到的一个念头。",
+"把你想表达的内容压缩成一句话。",
+"把那句话再展开成三段。",
+"写你最不愿意写的部分。",
+"给文章加一个温度。",
+"让文章少一点聪明，多一点真诚。",
+"写你曾经错过的东西。",
+"写你正在靠近的东西。",
+"让文章里面有“呼吸”。",
+"删掉所有形容词再看。",
+"尝试全用第一人称。",
+"尝试不用第一人称。",
+"用对话的方式写一段。",
+"用列清单的方式写一段。",
+"把文章写成一个故事弧线。",
+"用一个意象贯穿全文。",
+"写你害怕被看到的那个面。",
+"把文章写得更慢、更温柔。",
+"把文章写得更快、更直接。",
+"停下来，问：我此刻的感受是什么？",
+"让文章的重点只有一个。",
+"只写最重要的那一句。"
 ];
 
+let order = [];
+function shuffle() {
+  order = cards.slice().sort(() => Math.random() - 0.5);
+}
+shuffle();
+
 function nextCard() {
-  const index = Math.floor(Math.random() * cards.length);
+  if (order.length === 0) shuffle();
   const cardElement = document.getElementById("card");
+  const text = order.pop();
   cardElement.classList.remove("show");
   setTimeout(() => {
-    cardElement.textContent = cards[index];
+    cardElement.textContent = text;
     cardElement.classList.add("show");
   }, 150);
 }
 
 nextCard();
+
+document.getElementById("card").addEventListener("click", () => {
+  navigator.clipboard.writeText(document.getElementById("card").textContent);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault();
+    nextCard();
+  }
+});
 </script>
 </body>
 </html>
